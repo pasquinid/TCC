@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "",
+    "baseUrl": "srcs",
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,

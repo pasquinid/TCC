@@ -11,10 +11,10 @@ router.post('/register',(req,res,next)=>{
 		name 	: req.body.name,
 		email	: req.body.email,
 		username: req.body.username,
-		password: req.body.password 
+		password: req.body.password
 	});
 
-	User.getUserByUsername(req.body.username, (err, user_searched) => { // ** 
+	User.getUserByUsername(req.body.username, (err, user_searched) => { // **
 		if(err) throw err;
 		if(user_searched){
 			return res.json({success: false, msg: 'Username already registered!'});
@@ -52,7 +52,7 @@ router.post('/authenticate',(req,res,next)=>{
 
 				res.json({
 					success: true,
-					token  : 'JWT '+token, 
+					token  : 'JWT '+token,
 					user   : {
 						id      : user._id,
 						name    : user.name,
