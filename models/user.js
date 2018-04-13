@@ -23,12 +23,12 @@ const userSchema = mongoose.Schema({
 
 const User = module.exports = mongoose.model('User',userSchema);
 
-module.exports.getUserById = function(id,callback){
+module.exports.getUserById = function(id, callback){
 	User.findById(id,callback);
 }
 
-module.exports.getUserByUsername = function(username,callback){
-	const query = {username: username}
+module.exports.getUserByUsername = function(username, callback){
+	const query = {username: username};
 	User.findOne(query,callback);
 }
 
@@ -40,6 +40,14 @@ module.exports.addUser = function(newUser, callback){
 			newUser.save(callback);
 		});
 	});
+}
+
+module.exports.deleteUser = function(targetUser, callback){
+	User.findOneAndRemove(targetUser, callback);
+}
+
+module.exports.updateUser = function(modifiedUser, callback){
+	User.findByIdAndUpdate(modifiedUser._id,modifiedUser,callback);
 }
 
 module.exports.comparePassword = function(candidatePassword, hash, callback){

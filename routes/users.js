@@ -78,4 +78,20 @@ router.get('/profile',passport.authenticate('jwt',{session:false}),(req,res,next
 					}});
 });
 
+router.post('/delete',passport.authenticate('jwt',{session:false}),(req,res,next)=>{
+	let targetUser = {
+		name 		: req.body.name,
+		username: req.body.username,
+		email		: req.body.email
+	};
+
+	User.deleteUser(targetUser,(err, result)=>{
+		if(err){
+			res.json({success: false, msg: 'Failed to delete user'});
+		} else{
+			res.json({success: true, msg: 'User deleted!'});
+		}
+	});
+});
+
 module.exports = router;
